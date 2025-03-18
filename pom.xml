@@ -35,7 +35,6 @@
 
 
         <hwj-basic-common.version>1.0.0-SNAPSHOT</hwj-basic-common.version>
-        <hwj-dubbo-compatible.version>1.0.0-SNAPSHOT</hwj-dubbo-compatible.version>
     </properties>
 
     <build>
@@ -73,12 +72,6 @@
             <artifactId>hwj-basic-common</artifactId>
             <version>${hwj-basic-common.version}</version>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>com.hwj.dubbo</groupId>-->
-<!--            <artifactId>hwj-dubbo-compatible</artifactId>-->
-<!--            <version>${hwj-dubbo-compatible.version}</version>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>org.apache.commons</groupId>
