@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/client/member")
-public class MemberController {
+public class MemberClientController {
 
     @DubboReference(consumer = DubboConst.CONSUMER_HWJ_BASIC_SERVER)
     private MemberReadService memberReadService;

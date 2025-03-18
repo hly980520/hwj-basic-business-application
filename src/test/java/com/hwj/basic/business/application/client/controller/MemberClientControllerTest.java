@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 import javax.annotation.Resource;
 
 
-class MemberControllerTest extends BaseTest {
+class MemberClientControllerTest extends BaseTest {
 
     @Resource
-    private MemberController memberController;
+    private MemberClientController memberClientController;
 
     @Test
     void info() {
-        ApiResult<Member> info = memberController.info(1L);
+        ApiResult<Member> info = memberClientController.info(1L);
         logger.info("{}", info);
     }
 }
