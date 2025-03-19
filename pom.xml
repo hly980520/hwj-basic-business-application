@@ -26,13 +26,14 @@
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <slf4j.version>1.7.26</slf4j.version>
         <logbac.version>1.1.11</logbac.version>
+        <janino.version>3.1.10</janino.version>
         <lombok.version>1.18.30</lombok.version>
         <commons-lang3.version>3.5</commons-lang3.version>
         <mysql-connector-java.version>8.1.0</mysql-connector-java.version>
+        <jedis.version>3.8.0</jedis.version>
 
         <spring-boot-maven-plugin.version>2.7.18</spring-boot-maven-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-
 
         <hwj-basic-common.version>1.0.0-SNAPSHOT</hwj-basic-common.version>
     </properties>
@@ -172,10 +173,23 @@
         </dependency>
 
         <dependency>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>janino</artifactId>
+            <version>${janino.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${mapstruct.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
+
     </dependencies>
 
 

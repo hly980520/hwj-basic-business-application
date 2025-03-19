@@ -10,7 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @author: peng.huang
  * @since: 2025-03-18 12:03:28
  */
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = Application.class,
+value = {"-Dspring.profiles.active=dev"})
 public abstract class BaseTest {
 
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
