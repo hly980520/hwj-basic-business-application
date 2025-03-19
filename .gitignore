@@ -22,3 +22,13 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+.DS_Store
+
+mvnw
+mvnw.cmd
+
+.idea/
+catalina.base_IS_UNDEFINED/
+target/
+./hwj-basic-business-application.iml
