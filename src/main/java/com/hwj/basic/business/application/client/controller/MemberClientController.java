@@ -1,15 +1,15 @@
 package com.hwj.basic.business.application.client.controller;
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.hwj.basic.business.application.constant.DubboConst;
 import com.hwj.basic.business.application.result.ApiResult;
 import com.hwj.basic.common.member.domain.Member;
 import com.hwj.basic.common.member.service.MemberReadService;
 import com.hwj.basic.result.RpcResult;
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @Program: hwj
@@ -31,5 +31,14 @@ public class MemberClientController {
             return ApiResult.failed(rpcResult);
         }
         return ApiResult.success(rpcResult.getData());
+    }
+
+    @NacosValue("${dubbo.application.name}")
+    private String configValue;
+
+    @PostConstruct
+    public void testNacos() throws InterruptedException {
+        Thread.sleep(300000);
+        System.out.println("config value: " + configValue);
     }
 }

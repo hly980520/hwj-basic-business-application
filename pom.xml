@@ -13,7 +13,7 @@
     <artifactId>hwj-basic-business-application</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>hwj-basic-business-application</name>
-	<packaging>war</packaging>
+    <packaging>war</packaging>
 
     <properties>
         <failOnMissingWebXml>false</failOnMissingWebXml>
