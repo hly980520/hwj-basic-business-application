@@ -60,12 +60,39 @@ public class MemberClientController {
 
     //用户修改个人信息
     @PostMapping("/update")
-    public ApiResult<Member> update(@RequestBody Member member){
+    public ApiResult<Member> update(@RequestBody Member member) {
         RpcResult<Member> rpcResult = memberWriteService.update(member);
+        if (!rpcResult.isSuccess()) {
+            return ApiResult.failed(rpcResult);
+        }
+        return ApiResult.success(rpcResult.getData());
+    }
+
+    //用户注册
+    @PostMapping("/signup")
+    public ApiResult<Member> signup(@RequestBody Member member){
+        RpcResult<Member> rpcResult = memberWriteService.create(member);
         if (!rpcResult.isSuccess()){
             return ApiResult.failed(rpcResult);
         }
         return ApiResult.success(rpcResult.getData());
+    }
+
+    //用户登录
+    @PostMapping("/login")
+    public ApiResult<Member> login(@RequestParam String loginAccount,@RequestParam String loginPassword){
+        RpcResult<Member> userResult = memberReadService.queryByLoginAccount(loginAccount);
+        if (!userResult.isSuccess()){
+            return ApiResult.failed(userResult);
+        }
+        Member member = userResult.getData();
+        boolean isPasswordValid = BCrypt.checkpw(loginPassword, member.getLoginPassword());
+        if (!isPasswordValid) {
+            return ApiResult.failed("409","密码错误");
+        }
+        member.setLoginPassword(null);
+        return ApiResult.success(member);
+    }
 
     @NacosValue("${dubbo.application.name}")
     private String configValue;
@@ -90,31 +117,6 @@ public class MemberClientController {
         System.out.println("config value: " + configValue);
     }
 
-    //用户注册
-    @PostMapping("/signup")
-    public ApiResult<Member> signup(@RequestBody Member member){
-        RpcResult<Member> rpcResult = memberWriteService.create(member);
-        if (!rpcResult.isSuccess()){
-            return ApiResult.failed(rpcResult);
-        }
-        return ApiResult.success(rpcResult.getData());
-    }
 
-    //用户登录
-    @PostMapping("/login")
-    public ApiResult<Member> login(@RequestParam String loginAccount,@RequestParam String String loginPassword;
-        loginPassword){
-        RpcResult<Member> userResult = memberReadService.queryByLoginAccount(loginAccount);
-        if (!userResult.isSuccess()){
-            return ApiResult.failed(userResult);
-        }
-        Member member = userResult.getData();
-        boolean isPasswordValid = BCrypt.checkpw(loginPassword, member.getLoginPassword());
-        if (!isPasswordValid) {
-            return ApiResult.failed("409","密码错误");
-        }
-        member.setLoginPassword(null);
-        return ApiResult.success(member);
-    }
 
 }
