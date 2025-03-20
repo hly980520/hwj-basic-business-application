@@ -39,15 +39,18 @@
         <appender-ref ref="FILE-BUZZ"/>
     </appender>
 
-    <!-- 多环境配置 -->
-    <springProfile name="dev">
-        <root level="INFO">
-            <appender-ref ref="STDOUT"/>
-        </root>
-    </springProfile>
-    <springProfile name="!dev">
-        <root level="INFO">
-            <appender-ref ref="ASYNC"/>
-        </root>
-    </springProfile>
+    <!-- 开发环境未设置 APP_HOME -->
+    <property name="APP_HOME" value="${appHome:-notSet}" />
+
+    <root level="INFO">
+        <if condition='p("APP_HOME").contains("notSet")'>
+            <!-- 开发环境未设置appHome日志输出到控制台 -->
+            <then>
+                <appender-ref ref="STDOUT" />
+            </then>
+            <else>
+                <appender-ref ref="ASYNC" />
+            </else>
+        </if>
+    </root>
 </configuration>
