@@ -48,6 +48,9 @@ public class MemberClientController {
     @DubboReference(consumer = DubboConst.CONSUMER_HWJ_BASIC_SERVER)
     private MemberWriteService memberWriteService;
 
+    @NacosValue("${dubbo.application.name}")
+    private String configValue;
+
     @PostMapping("/info")
     public ApiResult<Member> info(@RequestParam Long memberId) {
         RpcResult<Member> rpcResult = memberReadService.queryById(memberId);
@@ -60,15 +63,13 @@ public class MemberClientController {
 
     //用户修改个人信息
     @PostMapping("/update")
-    public ApiResult<Member> update(@RequestBody Member member){
+    public ApiResult<Member> update(@RequestBody Member member) {
         RpcResult<Member> rpcResult = memberWriteService.update(member);
-        if (!rpcResult.isSuccess()){
+        if (!rpcResult.isSuccess()) {
             return ApiResult.failed(rpcResult);
         }
         return ApiResult.success(rpcResult.getData());
-
-    @NacosValue("${dubbo.application.name}")
-    private String configValue;
+    }
 
     @PostConstruct
     public void testNacos() throws InterruptedException {
@@ -86,7 +87,7 @@ public class MemberClientController {
         logger.info("RedisTemplate value ===>> {}", member);
 
 
-        Thread.sleep(300000);
+//        Thread.sleep(300000);
         System.out.println("config value: " + configValue);
     }
 
@@ -102,8 +103,8 @@ public class MemberClientController {
 
     //用户登录
     @PostMapping("/login")
-    public ApiResult<Member> login(@RequestParam String loginAccount,@RequestParam String String loginPassword;
-        loginPassword){
+    public ApiResult<Member> login(@RequestParam String loginAccount,
+                                   @RequestParam String loginPassword){
         RpcResult<Member> userResult = memberReadService.queryByLoginAccount(loginAccount);
         if (!userResult.isSuccess()){
             return ApiResult.failed(userResult);

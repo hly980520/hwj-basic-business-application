@@ -31,6 +31,7 @@
         <commons-lang3.version>3.5</commons-lang3.version>
         <mysql-connector-java.version>8.1.0</mysql-connector-java.version>
         <jedis.version>3.8.0</jedis.version>
+        <xxl-job.version>2.3.0</xxl-job.version>
 
         <spring-boot-maven-plugin.version>2.7.18</spring-boot-maven-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -196,6 +197,13 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>${jedis.version}</version>
+        </dependency>
+
+        <!-- xxl-job-core -->
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+            <version>${xxl-job.version}</version>
         </dependency>
 
     </dependencies>
