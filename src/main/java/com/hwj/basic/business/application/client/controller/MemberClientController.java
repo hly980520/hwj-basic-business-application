@@ -1,6 +1,7 @@
 package com.hwj.basic.business.application.client.controller;
 
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.hwj.basic.business.application.constant.DubboConst;
 import com.hwj.basic.business.application.result.ApiResult;
 import com.hwj.basic.common.member.domain.Member;
@@ -17,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -102,7 +102,8 @@ public class MemberClientController {
 
     //用户登录
     @PostMapping("/login")
-    public ApiResult<Member> login(@RequestParam String loginAccount,@RequestParam String loginPassword){
+    public ApiResult<Member> login(@RequestParam String loginAccount,@RequestParam String String loginPassword;
+        loginPassword){
         RpcResult<Member> userResult = memberReadService.queryByLoginAccount(loginAccount);
         if (!userResult.isSuccess()){
             return ApiResult.failed(userResult);
