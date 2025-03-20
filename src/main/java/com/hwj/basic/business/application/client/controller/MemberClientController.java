@@ -48,6 +48,9 @@ public class MemberClientController {
     @DubboReference(consumer = DubboConst.CONSUMER_HWJ_BASIC_SERVER)
     private MemberWriteService memberWriteService;
 
+    @NacosValue("${dubbo.application.name}")
+    private String configValue;
+
     @PostMapping("/info")
     public ApiResult<Member> info(@RequestParam Long memberId) {
         RpcResult<Member> rpcResult = memberReadService.queryById(memberId);
@@ -68,35 +71,6 @@ public class MemberClientController {
         return ApiResult.success(rpcResult.getData());
     }
 
-    //用户注册
-    @PostMapping("/signup")
-    public ApiResult<Member> signup(@RequestBody Member member){
-        RpcResult<Member> rpcResult = memberWriteService.create(member);
-        if (!rpcResult.isSuccess()){
-            return ApiResult.failed(rpcResult);
-        }
-        return ApiResult.success(rpcResult.getData());
-    }
-
-    //用户登录
-    @PostMapping("/login")
-    public ApiResult<Member> login(@RequestParam String loginAccount,@RequestParam String loginPassword){
-        RpcResult<Member> userResult = memberReadService.queryByLoginAccount(loginAccount);
-        if (!userResult.isSuccess()){
-            return ApiResult.failed(userResult);
-        }
-        Member member = userResult.getData();
-        boolean isPasswordValid = BCrypt.checkpw(loginPassword, member.getLoginPassword());
-        if (!isPasswordValid) {
-            return ApiResult.failed("409","密码错误");
-        }
-        member.setLoginPassword(null);
-        return ApiResult.success(member);
-    }
-
-    @NacosValue("${dubbo.application.name}")
-    private String configValue;
-
     @PostConstruct
     public void testNacos() throws InterruptedException {
 
@@ -113,10 +87,26 @@ public class MemberClientController {
         logger.info("RedisTemplate value ===>> {}", member);
 
 
-        Thread.sleep(300000);
+//        Thread.sleep(300000);
         System.out.println("config value: " + configValue);
     }
 
 
+    //用户登录
+    @PostMapping("/login")
+    public ApiResult<Member> login(@RequestParam String loginAccount,
+                                   @RequestParam String loginPassword){
+        RpcResult<Member> userResult = memberReadService.queryByLoginAccount(loginAccount);
+        if (!userResult.isSuccess()){
+            return ApiResult.failed(userResult);
+        }
+        Member member = userResult.getData();
+        boolean isPasswordValid = BCrypt.checkpw(loginPassword, member.getLoginPassword());
+        if (!isPasswordValid) {
+            return ApiResult.failed("409","密码错误");
+        }
+        member.setLoginPassword(null);
+        return ApiResult.success(member);
+    }
 
 }
