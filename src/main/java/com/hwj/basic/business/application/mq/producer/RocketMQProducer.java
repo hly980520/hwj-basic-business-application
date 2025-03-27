@@ -1,7 +1,6 @@
 package com.hwj.basic.business.application.mq.producer;
 
-import com.hwj.basic.business.application.mq.dto.RocketMessageDTO;
-import com.hwj.basic.business.application.mq.utils.TopicUtils;
+import com.hwj.basic.rocketmq.dto.RocketMessageDTO;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -29,9 +28,9 @@ public class RocketMQProducer {
     private String nameAddr;
 
     /**
-     * producer
+     * topic
      */
-    private String producer;
+    private String topic;
 
 
     private RocketMQTemplate rocketMQTemplate;
@@ -66,8 +65,8 @@ public class RocketMQProducer {
         return this;
     }
 
-    public RocketMQProducer producer(String producer) {
-        this.producer = producer;
+    public RocketMQProducer topic(String topic) {
+        this.topic = topic;
         return this;
     }
 
@@ -82,9 +81,8 @@ public class RocketMQProducer {
      * @return true or false
      */
     public boolean sendMessage(RocketMessageDTO rocketMessageDTO) {
-        String topic = TopicUtils.buildTopic(this.producer, rocketMessageDTO.getMessageType());
         try {
-            SendResult sendResult = this.rocketMQTemplate.syncSend(topic, rocketMessageDTO);
+            SendResult sendResult = this.rocketMQTemplate.syncSend(topic, rocketMessageDTO.toString());
             return sendResult.getSendStatus() == SendStatus.SEND_OK;
         } catch (Exception e) {
             log.error("sendMessage error [{}] {} ", rocketMessageDTO, e.getMessage(), e);
@@ -95,17 +93,16 @@ public class RocketMQProducer {
     /**
      * 同步发送消息
      *
-     * @param msgProducer      消息生产者
+     * @param topic      消息topic
      * @param rocketMessageDTO 消息
      * @return true or false
      */
-    public boolean sendMessage(RocketMessageDTO rocketMessageDTO, String msgProducer) {
-        String topic = TopicUtils.buildTopic(msgProducer, rocketMessageDTO.getMessageType());
+    public boolean sendMessage(RocketMessageDTO rocketMessageDTO, String topic) {
         try {
-            SendResult sendResult = this.rocketMQTemplate.syncSend(topic, rocketMessageDTO);
+            SendResult sendResult = this.rocketMQTemplate.syncSend(topic, rocketMessageDTO.toString());
             return sendResult.getSendStatus() == SendStatus.SEND_OK;
         } catch (Exception e) {
-            log.error("sendMessage error [msgProducer:{}] [{}] {} ", msgProducer, rocketMessageDTO, e.getMessage(), e);
+            log.error("sendMessage error [topic:{}] [{}] {} ", topic, rocketMessageDTO, e.getMessage(), e);
             return false;
         }
     }
@@ -114,7 +111,7 @@ public class RocketMQProducer {
     public String toString() {
         return new StringJoiner(", ", RocketMQProducer.class.getSimpleName() + "[", "]")
                 .add("nameAddr='" + nameAddr + "'")
-                .add("producer='" + producer + "'")
+                .add("topic='" + topic + "'")
                 .toString();
     }
 }
