@@ -4,22 +4,23 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.StringJoiner;
 
-//活动列表页面
-public class ActivityVO implements Serializable {
+//活动任务
+public class ActivityTaskVO implements Serializable {
 
-    private static final long serialVersionUID = 1841737632950157588L;
+    private static final long serialVersionUID = -4953939239805036423L;
 
     private Long id;
 
-    private String activityName;
+    private String name;
 
-    private Integer activityType;
+    //活动名称
+    private String activityName;
 
     private Integer status;
 
-    private LocalDateTime startTime;
+    private LocalDateTime createdDate;
 
-    private LocalDateTime endTime;
+    private String createdBy;
 
     private LocalDateTime updatedDate;
 
@@ -28,12 +29,21 @@ public class ActivityVO implements Serializable {
     //操作
     private String operation;
 
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getActivityName() {
@@ -44,14 +54,6 @@ public class ActivityVO implements Serializable {
         this.activityName = activityName;
     }
 
-    public Integer getActivityType() {
-        return activityType;
-    }
-
-    public void setActivityType(Integer activityType) {
-        this.activityType = activityType;
-    }
-
     public Integer getStatus() {
         return status;
     }
@@ -60,20 +62,20 @@ public class ActivityVO implements Serializable {
         this.status = status;
     }
 
-    public LocalDateTime getStartTime() {
-        return startTime;
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public LocalDateTime getEndTime() {
-        return endTime;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
     public LocalDateTime getUpdatedDate() {
@@ -102,17 +104,17 @@ public class ActivityVO implements Serializable {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", ActivityVO.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", ActivityTaskVO.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
-                .add("activityName='" + activityName + "'")
-                .add("activityType=" + activityType)
+                .add("name='" + name + "'")
+                .add("activityName=" + activityName + "'")
+                .add("activityName=" + status + "'")
                 .add("status=" + status)
-                .add("startTime=" + startTime)
-                .add("endTime=" + endTime)
+                .add("createdDate=" + createdDate)
+                .add("createdBy='" + createdBy + "'")
                 .add("updatedDate=" + updatedDate)
                 .add("updatedBy='" + updatedBy + "'")
-                .add("operation='" + operation + "'")
+                .add("operation=" + operation + "'")
                 .toString();
     }
-
 }
