@@ -1,4 +1,4 @@
-package com.hwj.basic.business.application.vo;
+package com.hwj.basic.business.application.vo.activityvo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -11,8 +11,8 @@ public class ActivityAddUpdateVO implements Serializable {
     private Long id;
     private String activityName;
     private Integer activityType;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private String startTime;
+    private String endTime;
 
     private String ruleText;
 
@@ -25,9 +25,9 @@ public class ActivityAddUpdateVO implements Serializable {
     private String registerWay;
 
     private String createdBy;
-    private LocalDateTime createdDate;
+    private String createdDate;
     private String updatedBy;
-    private LocalDateTime updatedDate;
+    private String updatedDate;
 
     public Long getId() {
         return id;
@@ -53,19 +53,19 @@ public class ActivityAddUpdateVO implements Serializable {
         this.activityType = activityType;
     }
 
-    public LocalDateTime getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public LocalDateTime getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
@@ -117,11 +117,12 @@ public class ActivityAddUpdateVO implements Serializable {
         this.createdBy = createdBy;
     }
 
-    public LocalDateTime getCreatedDate() {
+
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -133,11 +134,11 @@ public class ActivityAddUpdateVO implements Serializable {
         this.updatedBy = updatedBy;
     }
 
-    public LocalDateTime getUpdatedDate() {
+    public String getUpdatedDate() {
         return updatedDate;
     }
 
-    public void setUpdatedDate(LocalDateTime updatedDate) {
+    public void setUpdatedDate(String updatedDate) {
         this.updatedDate = updatedDate;
     }
 

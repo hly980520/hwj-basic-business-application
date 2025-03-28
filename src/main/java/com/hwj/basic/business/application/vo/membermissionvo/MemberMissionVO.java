@@ -1,14 +1,13 @@
-package com.hwj.basic.business.application.vo;
+package com.hwj.basic.business.application.vo.membermissionvo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.StringJoiner;
 
-//用户奖励
-public class MemberMissionRewardVO implements Serializable {
+//用户任务
+public class MemberMissionVO implements Serializable {
 
-    private static final long serialVersionUID = 3424594966927575790L;
-
+    private static final long serialVersionUID = 319274701313196722L;
     private Long id;
 
     private Long memberId;
@@ -20,20 +19,16 @@ public class MemberMissionRewardVO implements Serializable {
     private String taskName;
 
     //活动名称
-    private Integer activityName;
+    private String activityName;
 
-    private Integer sendType;
+    private Integer qualified;
 
-    private Integer sendStatus;
-
-    private Long sourceId;
+    private Integer achievable;
 
     private LocalDateTime createdDate;
 
+    //发放时间
     private LocalDateTime sendTime;
-
-    // 操作
-    private String operation;
 
     public Long getId() {
         return id;
@@ -67,36 +62,28 @@ public class MemberMissionRewardVO implements Serializable {
         this.taskName = taskName;
     }
 
-    public Integer getActivityName() {
+    public String getActivityName() {
         return activityName;
     }
 
-    public void setActivityName(Integer activityName) {
+    public void setActivityName(String activityName) {
         this.activityName = activityName;
     }
 
-    public Integer getSendType() {
-        return sendType;
+    public Integer getQualified() {
+        return qualified;
     }
 
-    public void setSendType(Integer sendType) {
-        this.sendType = sendType;
+    public void setQualified(Integer qualified) {
+        this.qualified = qualified;
     }
 
-    public Integer getSendStatus() {
-        return sendStatus;
+    public Integer getAchievable() {
+        return achievable;
     }
 
-    public void setSendStatus(Integer sendStatus) {
-        this.sendStatus = sendStatus;
-    }
-
-    public Long getSourceId() {
-        return sourceId;
-    }
-
-    public void setSourceId(Long sourceId) {
-        this.sourceId = sourceId;
+    public void setAchievable(Integer achievable) {
+        this.achievable = achievable;
     }
 
     public LocalDateTime getCreatedDate() {
@@ -115,28 +102,19 @@ public class MemberMissionRewardVO implements Serializable {
         this.sendTime = sendTime;
     }
 
-    public String getOperation() {
-        return operation;
-    }
-
-    public void setOperation(String operation) {
-        this.operation = operation;
-    }
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", MemberMissionRewardVO.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", MemberMissionVO.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
                 .add("memberId='" + memberId)
                 .add("loginAccount=" + loginAccount + "'")
                 .add("taskName=" + taskName + "'")
                 .add("activityName=" + activityName + "'")
-                .add("sendType=" + sendType)
-                .add("sendStatus=" + sendStatus)
-                .add("sourceId=" + sourceId)
-                .add("createdDate=" + createdDate)
+                .add("qualified=" + qualified)
+                .add("achievable=" + achievable)
+                .add("createdDate='" + createdDate + "'")
                 .add("sendTime='" + sendTime + "'")
-                .add("operation='" + operation + "'")
                 .toString();
     }
 

@@ -1,9 +1,7 @@
 package com.hwj.basic.business.application.client.controller;
 
 import com.hwj.basic.business.application.constant.DubboConst;
-import com.hwj.basic.business.application.result.ApiResult;
-import com.hwj.basic.business.application.vo.ActivityVO;
-import com.hwj.basic.common.activity.dto.ActivityDTO;
+import com.hwj.basic.business.application.vo.activityvo.ActivityVO;
 import com.hwj.basic.common.activity.service.ActivityReadService;
 import com.hwj.basic.common.activity.service.ActivityWriteService;
 import com.hwj.basic.result.RpcResult;

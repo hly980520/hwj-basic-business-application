@@ -1,4 +1,4 @@
-package com.hwj.basic.business.application.vo;
+package com.hwj.basic.business.application.vo.giftvo;
 
 import java.io.Serializable;
 import java.util.StringJoiner;

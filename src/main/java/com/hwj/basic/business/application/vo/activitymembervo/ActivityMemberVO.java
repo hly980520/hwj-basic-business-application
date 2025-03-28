@@ -1,4 +1,4 @@
-package com.hwj.basic.business.application.vo;
+package com.hwj.basic.business.application.vo.activitymembervo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -27,10 +27,6 @@ public class ActivityMemberVO implements Serializable {
     private LocalDateTime updatedDate;
 
     private String updatedBy;
-
-    //操作
-    private String operation;
-
 
     public Long getId() {
         return id;
@@ -96,13 +92,6 @@ public class ActivityMemberVO implements Serializable {
         this.updatedBy = updatedBy;
     }
 
-    public String getOperation() {
-        return operation;
-    }
-
-    public void setOperation(String operation) {
-        this.operation = operation;
-    }
 
     @Override
     public String toString() {
@@ -115,7 +104,6 @@ public class ActivityMemberVO implements Serializable {
                 .add("participateDate=" + participateDate)
                 .add("updatedDate=" + updatedDate)
                 .add("updatedBy='" + updatedBy + "'")
-                .add("operation=" + operation + "'")
                 .toString();
     }
 }

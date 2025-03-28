@@ -1,6 +1,6 @@
-package com.hwj.basic.business.application.converter;
+package com.hwj.basic.business.application.converter.activitymemberconverter;
 
-import com.hwj.basic.business.application.vo.ActivityMemberVO;
+import com.hwj.basic.business.application.vo.activitymembervo.ActivityMemberVO;
 import com.hwj.basic.common.activitymember.dto.ActivityMemberDTO;
 import org.mapstruct.Mapper;
 

@@ -1,7 +1,6 @@
-package com.hwj.basic.business.application.vo;
+package com.hwj.basic.business.application.vo.activitytaskvo;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.StringJoiner;
 
 //活动任务
@@ -16,19 +15,16 @@ public class ActivityTaskVO implements Serializable {
     //活动名称
     private String activityName;
 
-    private Integer status;
+    //状态
+    private String statusText;
 
-    private LocalDateTime createdDate;
+    private String createdDate;
 
     private String createdBy;
 
-    private LocalDateTime updatedDate;
+    private String updatedDate;
 
     private String updatedBy;
-
-    //操作
-    private String operation;
-
 
     public Long getId() {
         return id;
@@ -54,19 +50,19 @@ public class ActivityTaskVO implements Serializable {
         this.activityName = activityName;
     }
 
-    public Integer getStatus() {
-        return status;
+    public String getStatusText() {
+        return statusText;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setStatusText(String statusText) {
+        this.statusText = statusText;
     }
 
-    public LocalDateTime getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -78,11 +74,11 @@ public class ActivityTaskVO implements Serializable {
         this.createdBy = createdBy;
     }
 
-    public LocalDateTime getUpdatedDate() {
+    public String getUpdatedDate() {
         return updatedDate;
     }
 
-    public void setUpdatedDate(LocalDateTime updatedDate) {
+    public void setUpdatedDate(String updatedDate) {
         this.updatedDate = updatedDate;
     }
 
@@ -94,27 +90,17 @@ public class ActivityTaskVO implements Serializable {
         this.updatedBy = updatedBy;
     }
 
-    public String getOperation() {
-        return operation;
-    }
-
-    public void setOperation(String operation) {
-        this.operation = operation;
-    }
-
     @Override
     public String toString() {
         return new StringJoiner(", ", ActivityTaskVO.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
                 .add("name='" + name + "'")
                 .add("activityName=" + activityName + "'")
-                .add("activityName=" + status + "'")
-                .add("status=" + status)
+                .add("statusText=" + statusText + "'")
                 .add("createdDate=" + createdDate)
                 .add("createdBy='" + createdBy + "'")
                 .add("updatedDate=" + updatedDate)
                 .add("updatedBy='" + updatedBy + "'")
-                .add("operation=" + operation + "'")
                 .toString();
     }
 }

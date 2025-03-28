@@ -1,4 +1,4 @@
-package com.hwj.basic.business.application.vo;
+package com.hwj.basic.business.application.vo.memberopervo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

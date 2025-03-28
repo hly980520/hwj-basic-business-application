@@ -1,4 +1,4 @@
-package com.hwj.basic.business.application.vo;
+package com.hwj.basic.business.application.vo.giftvo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -14,18 +14,17 @@ public class GiftVO implements Serializable {
 
     private Integer giftType;
 
-    private Integer sendNum;
+    //发放数量
+    private Integer issueCount;
 
-    private LocalDateTime createdDate;
+    private String createdDate;
 
     private String createdBy;
 
-    private LocalDateTime updatedDate;
+    private String updatedDate;
 
     private String updatedBy;
 
-    //操作
-    private String operation;
 
     public Long getId() {
         return id;
@@ -51,21 +50,14 @@ public class GiftVO implements Serializable {
         this.giftType = giftType;
     }
 
-    public Integer getSendNum() {
-        return sendNum;
+    public Integer getIssueCount() {
+        return issueCount;
     }
 
-    public void setSendNum(Integer sendNum) {
-        this.sendNum = sendNum;
+    public void setIssueCount(Integer issueCount) {
+        this.issueCount = issueCount;
     }
 
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
 
     public String getCreatedBy() {
         return createdBy;
@@ -75,13 +67,6 @@ public class GiftVO implements Serializable {
         this.createdBy = createdBy;
     }
 
-    public LocalDateTime getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(LocalDateTime updatedDate) {
-        this.updatedDate = updatedDate;
-    }
 
     public String getUpdatedBy() {
         return updatedBy;
@@ -91,12 +76,20 @@ public class GiftVO implements Serializable {
         this.updatedBy = updatedBy;
     }
 
-    public String getOperation() {
-        return operation;
+    public String getCreatedDate() {
+        return createdDate;
     }
 
-    public void setOperation(String operation) {
-        this.operation = operation;
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(String updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     @Override
@@ -104,13 +97,12 @@ public class GiftVO implements Serializable {
         return new StringJoiner(", ", GiftVO.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
                 .add("giftName='" + giftName + "'")
-                .add("giftType=" + giftType)
-                .add("sendNum=" + sendNum)
+                .add("giftType=" + giftType + "'")
+                .add("issueCount=" + issueCount)
                 .add("createdDate=" + createdDate)
                 .add("createdBy=" + createdBy + "'")
                 .add("updatedDate=" + updatedDate)
                 .add("updatedBy='" + updatedBy + "'")
-                .add("operation='" + operation + "'")
                 .toString();
     }
 
