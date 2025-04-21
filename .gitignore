@@ -28,7 +28,7 @@ replay_pid*
 mvnw
 mvnw.cmd
 
-.idea/
-catalina.base_IS_UNDEFINED/
-target/
-./hwj-basic-business-application.iml
+./.idea/
+./catalina.base_IS_UNDEFINED/
+./target/
+hwj-basic-business-application.iml
