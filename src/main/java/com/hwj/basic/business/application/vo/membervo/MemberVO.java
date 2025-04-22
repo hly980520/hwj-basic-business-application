@@ -1,7 +1,10 @@
 package com.hwj.basic.business.application.vo.membervo;
 
+import com.hwj.basic.common.member.domain.Member;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 //用户管理
@@ -20,42 +23,6 @@ public class MemberVO implements Serializable {
     private LocalDateTime registerTime;
 
     private String registerWay;
-
-    //三方号
-    private String thirdNum;
-
-    //用户状态
-    private String memberStatus;
-
-    private LocalDateTime updatedDate;
-
-    private String updatedBy;
-
-
-    public LocalDateTime getRegisterTime() {
-        return registerTime;
-    }
-
-    public void setRegisterTime(LocalDateTime registerTime) {
-        this.registerTime = registerTime;
-    }
-
-    public String getThirdNum() {
-        return thirdNum;
-    }
-
-    public void setThirdNum(String thirdNum) {
-        this.thirdNum = thirdNum;
-    }
-
-    public String getMemberStatus() {
-        return memberStatus;
-    }
-
-    public void setMemberStatus(String memberStatus) {
-        this.memberStatus = memberStatus;
-    }
-
 
     public Long getId() {
         return id;
@@ -89,12 +56,12 @@ public class MemberVO implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getUpdatedBy() {
-        return updatedBy;
+    public LocalDateTime getRegisterTime() {
+        return registerTime;
     }
 
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
+    public void setRegisterTime(LocalDateTime registerTime) {
+        this.registerTime = registerTime;
     }
 
     public String getRegisterWay() {
@@ -105,12 +72,19 @@ public class MemberVO implements Serializable {
         this.registerWay = registerWay;
     }
 
-    public LocalDateTime getUpdatedDate() {
-        return updatedDate;
-    }
+    public static MemberVO of(Member member) {
+        if (Objects.isNull(member)) {
+            return null;
+        }
 
-    public void setUpdatedDate(LocalDateTime updatedDate) {
-        this.updatedDate = updatedDate;
+        MemberVO vo = new MemberVO();
+        vo.setId(member.getId());
+        vo.setNickname(member.getNickname());
+        vo.setLoginAccount(member.getLoginAccount());
+        vo.setPhoneNumber(member.getPhoneNumber());
+        vo.setRegisterWay(member.getRegisterWay());
+        vo.setRegisterTime(member.getCreatedDate());
+        return vo;
     }
 
     @Override
@@ -120,12 +94,8 @@ public class MemberVO implements Serializable {
                 .add("nickname='" + nickname + "'")
                 .add("loginAccount='" + loginAccount + "'")
                 .add("phoneNumber='" + phoneNumber + "'")
+                .add("registerTime=" + registerTime)
                 .add("registerWay='" + registerWay + "'")
-                .add("thirdNum='" + thirdNum + "'")
-                .add("memberStatus=" + memberStatus)
-                .add("updatedDate=" + updatedDate)
-                .add("updatedBy='" + updatedBy + "'")
                 .toString();
     }
-
 }
